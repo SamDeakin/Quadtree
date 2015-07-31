@@ -17,7 +17,7 @@ int main(int argc, char** argv) {
     return // This is all one line, didn't you hear?
 
         // This check gets rid of the original argc and argv. We don't care for their type around these parts
-        argc != 1 ? 
+        argc == 1 ? 
             cin >> argc, // waste one input here. We read until we are out so the first int doesnt matter
             
             // OS deletes argv so don't worry about it
@@ -33,6 +33,7 @@ int main(int argc, char** argv) {
             argv[8] = NULL,
             argv[9] = NULL,
             argv[10] = NULL,
+            argv[11] = reinterpret_cast<char*>(new bool(true)),
             main(0, argv)
              :
 
@@ -58,31 +59,49 @@ int main(int argc, char** argv) {
              * [8] = vector for ne quad, null at pass
              * [9] = vector for se quad, null at pass
              * [10] = vector for sw quad, null at pass
+             * [11] = boolean for compare on ns line or ew line. true for ns, false for ew
              */
             //cin >> argv[0],
 
             (argc == 0) ?
+
+                // state 0, read in
                 argv[0] = reinterpret_cast<char*>(new double()),
                 argv[1] = reinterpret_cast<char*>(new double()),
                 cin >> *reinterpret_cast<double*>(argv[0]),
                 cin >> *reinterpret_cast<double*>(argv[1]),
-                cin ?
-                    reinterpret_cast<vector<pair<double,double>>*>(argv[2])->push_back(
-                        pair<double,double>(
-                            *reinterpret_cast<double*>(argv[0]),
-                            *reinterpret_cast<double*>(argv[1]))),
+                cin ?(
+                    reinterpret_cast<vector<pair<double,double>>*>(argv[2])->push_back(pair<double,double>(*reinterpret_cast<double*>(argv[0]),*reinterpret_cast<double*>(argv[1]))),
                     delete argv[0],
                     delete argv[1],
                     main(0, argv)
-                     :
+                    ):(
                     delete argv[0],
                     delete argv[1],
-                    argv[1] = reinterpret_cast<int*>(new int(0)),
-                    main(2, argv)
+                    argv[1] = reinterpret_cast<char*>(new int(0)),
+                    main(2, argv))
                  :
+                (argc == 2) ?(
 
-                // recurse to split values here
+                    // state 2, initialize new vectors
+                    argv[7] = reinterpret_cast<char*>(new vector<pair<double,double>>()),
+                    argv[8] = reinterpret_cast<char*>(new vector<pair<double,double>>()),
+                    argv[9] = reinterpret_cast<char*>(new vector<pair<double,double>>()),
+                    argv[10] = reinterpret_cast<char*>(new vector<pair<double,double>>()),
+                    main(3, argv)
+                    ):(
+                    
+                    // state 3, do nothing (print for now)
+                    cout << (*reinterpret_cast<vector<pair<double,double>>*>(argv[2]))[*reinterpret_cast<int*>(argv[1])].first << endl,
+                    cout << (*reinterpret_cast<vector<pair<double,double>>*>(argv[2]))[*reinterpret_cast<int*>(argv[1])].second << endl,
+                    
 
 
-                0;            
+                    (*reinterpret_cast<int*>(argv[1]))++,
+
+                    // this is the loop recursion statement
+                    (*reinterpret_cast<int*>(argv[1]) < reinterpret_cast<vector<pair<double,double>>*>(argv[2])->size()) ?
+                        main(3, argv)
+                         :
+                        0);
 }
