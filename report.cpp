@@ -33,7 +33,6 @@ int main(int argc, char** argv) {
             argv[8] = NULL,
             argv[9] = NULL,
             argv[10] = NULL,
-            argv[11] = reinterpret_cast<char*>(new bool(true)),
             main(0, argv)
              :
 
@@ -59,7 +58,6 @@ int main(int argc, char** argv) {
              * [8] = vector for ne quad, null at pass
              * [9] = vector for se quad, null at pass
              * [10] = vector for sw quad, null at pass
-             * [11] = boolean for compare on ns line or ew line. true for ns, false for ew
              */
             //cin >> argv[0],
 
@@ -95,7 +93,26 @@ int main(int argc, char** argv) {
                     cout << (*reinterpret_cast<vector<pair<double,double>>*>(argv[2]))[*reinterpret_cast<int*>(argv[1])].first << endl,
                     cout << (*reinterpret_cast<vector<pair<double,double>>*>(argv[2]))[*reinterpret_cast<int*>(argv[1])].second << endl,
                     
-
+                    // this puts the current number into the correct quadrant
+                    ((*reinterpret_cast<vector<pair<double,double>>*>(argv[2]))[*reinterpret_cast<int*>(argv[1])].first <= 
+                        ((*reinterpret_cast<int*>(argv[3]) + *reinterpret_cast<int*>(argv[4])) / 2) ?
+                        // number on south side
+                        (*reinterpret_cast<vector<pair<double,double>>*>(argv[2]))[*reinterpret_cast<int*>(argv[1])].second <= 
+                            ((*reinterpret_cast<int*>(argv[5]) + *reinterpret_cast<int*>(argv[6])) / 2) ?
+                            // sw
+                            reinterpret_cast<vector<pair<double,double>>*>(argv[10])->push_back((*reinterpret_cast<vector<pair<double,double>>*>(argv[2]))[*reinterpret_cast<int*>(argv[1])])
+                             :
+                            // se
+                            reinterpret_cast<vector<pair<double,double>>*>(argv[9])->push_back((*reinterpret_cast<vector<pair<double,double>>*>(argv[2]))[*reinterpret_cast<int*>(argv[1])])
+                         :
+                        // number on north side
+                        (*reinterpret_cast<vector<pair<double,double>>*>(argv[2]))[*reinterpret_cast<int*>(argv[1])].second <= 
+                            ((*reinterpret_cast<int*>(argv[5]) + *reinterpret_cast<int*>(argv[6])) / 2) ?
+                            // nw
+                            reinterpret_cast<vector<pair<double,double>>*>(argv[7])->push_back((*reinterpret_cast<vector<pair<double,double>>*>(argv[2]))[*reinterpret_cast<int*>(argv[1])])
+                             :
+                            // ne
+                            reinterpret_cast<vector<pair<double,double>>*>(argv[8])->push_back((*reinterpret_cast<vector<pair<double,double>>*>(argv[2]))[*reinterpret_cast<int*>(argv[1])])),
 
                     (*reinterpret_cast<int*>(argv[1]))++,
 
@@ -103,5 +120,72 @@ int main(int argc, char** argv) {
                     (*reinterpret_cast<int*>(argv[1]) < reinterpret_cast<vector<pair<double,double>>*>(argv[2])->size()) ?
                         main(3, argv)
                          :
+
+                        // done putting values in their correct quadrant
+                        // here we determine recursion
+                        // nw first
+                        (reinterpret_cast<vector<pair<double,double>>*>(argv[7])->size() < 2 ?
+                            // size 1 or 0, don't recurse
+                            ((reinterpret_cast<vector<pair<double,double>>*>(argv[7])->size() == 0 ?
+                                // 0, just delete the vector
+                                delete argv[7],
+                                0
+                                 :
+                                // 1, print then delete
+                                cout << (*reinterpret_cast<vector<pair<double,double>>*>(argv[7]))[0].first << endl,
+                                cout << (*reinterpret_cast<vector<pair<double,double>>*>(argv[7]))[0].second << endl,
+                                delete argv[7],
+                                0)
+                             :
+                            0),
+                        // ne
+                        (reinterpret_cast<vector<pair<double,double>>*>(argv[8])->size() < 2 ?
+                            ((reinterpret_cast<vector<pair<double,double>>*>(argv[8])->size() == 0 ?
+                                // 0, just delete the vector
+                                delete argv[8],
+                                0
+                                 :
+                                // 1, print then delete
+                                cout << (*reinterpret_cast<vector<pair<double,double>>*>(argv[8]))[0].first << endl,
+                                cout << (*reinterpret_cast<vector<pair<double,double>>*>(argv[8]))[0].second << endl,
+                                delete argv[8],
+                                0)
+                             :
+                            0),
+                        // se
+                        (reinterpret_cast<vector<pair<double,double>>*>(argv[9])->size() < 2 ?
+                            ((reinterpret_cast<vector<pair<double,double>>*>(argv[9])->size() == 0 ?
+                                // 0, just delete the vector
+                                delete argv[9],
+                                0
+                                 :
+                                // 1, print then delete
+                                cout << (*reinterpret_cast<vector<pair<double,double>>*>(argv[9]))[0].first << endl,
+                                cout << (*reinterpret_cast<vector<pair<double,double>>*>(argv[9]))[0].second << endl,
+                                delete argv[9],
+                                0)
+                             :
+                            0),
+                        // sw last
+                        (reinterpret_cast<vector<pair<double,double>>*>(argv[10])->size() < 2 ?
+                            ((reinterpret_cast<vector<pair<double,double>>*>(argv[10])->size() == 0 ?
+                                // 0, just delete the vector
+                                delete argv[10],
+                                0
+                                 :
+                                // 1, print then delete
+                                cout << (*reinterpret_cast<vector<pair<double,double>>*>(argv[10]))[0].first << endl,
+                                cout << (*reinterpret_cast<vector<pair<double,double>>*>(argv[10]))[0].second << endl,
+                                delete argv[10],
+                                0)
+                             :
+                            0),
+                        // we know we are done with argv[1-6]
+                        delete argv[1],
+                        delete argv[2],
+                        delete argv[3],
+                        delete argv[4],
+                        delete argv[5],
+                        delete argv[6],
                         0);
 }
