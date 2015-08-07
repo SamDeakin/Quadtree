@@ -41,7 +41,7 @@ int main(int argc, char** argv) {
              * argc is the program state
              * 
              * 0 is read and add to argv[2]
-             * 1 is initial state. Don't call this with parameters
+             * 1 is initial state. Don't call this program with command line arguments
              * 2 is first split state
              * 3 is later split states, guarantees argv[7-10] will be initialized
              * 
@@ -89,16 +89,16 @@ int main(int argc, char** argv) {
                     main(3, argv)
                     ):(
                     
-                    // state 3, do nothing (print for now)
+                    // state 3, print for now then recurse
                     cout << (*reinterpret_cast<vector<pair<double,double>>*>(argv[2]))[*reinterpret_cast<int*>(argv[1])].first << endl,
                     cout << (*reinterpret_cast<vector<pair<double,double>>*>(argv[2]))[*reinterpret_cast<int*>(argv[1])].second << endl,
                     
                     // this puts the current number into the correct quadrant
                     ((*reinterpret_cast<vector<pair<double,double>>*>(argv[2]))[*reinterpret_cast<int*>(argv[1])].first <= 
-                        ((*reinterpret_cast<int*>(argv[3]) + *reinterpret_cast<int*>(argv[4])) / 2) ?
+                        ((*reinterpret_cast<double*>(argv[3]) + *reinterpret_cast<double*>(argv[4])) / 2) ?
                         // number on south side
                         (*reinterpret_cast<vector<pair<double,double>>*>(argv[2]))[*reinterpret_cast<int*>(argv[1])].second <= 
-                            ((*reinterpret_cast<int*>(argv[5]) + *reinterpret_cast<int*>(argv[6])) / 2) ?
+                            ((*reinterpret_cast<double*>(argv[5]) + *reinterpret_cast<double*>(argv[6])) / 2) ?
                             // sw
                             reinterpret_cast<vector<pair<double,double>>*>(argv[10])->push_back((*reinterpret_cast<vector<pair<double,double>>*>(argv[2]))[*reinterpret_cast<int*>(argv[1])])
                              :
@@ -107,7 +107,7 @@ int main(int argc, char** argv) {
                          :
                         // number on north side
                         (*reinterpret_cast<vector<pair<double,double>>*>(argv[2]))[*reinterpret_cast<int*>(argv[1])].second <= 
-                            ((*reinterpret_cast<int*>(argv[5]) + *reinterpret_cast<int*>(argv[6])) / 2) ?
+                            ((*reinterpret_cast<double*>(argv[5]) + *reinterpret_cast<double*>(argv[6])) / 2) ?
                             // nw
                             reinterpret_cast<vector<pair<double,double>>*>(argv[7])->push_back((*reinterpret_cast<vector<pair<double,double>>*>(argv[2]))[*reinterpret_cast<int*>(argv[1])])
                              :
@@ -142,10 +142,14 @@ int main(int argc, char** argv) {
                             (reinterpret_cast<char**>(argv[0]))[0] = NULL,
                             (reinterpret_cast<char**>(argv[0]))[1] = NULL,
                             (reinterpret_cast<char**>(argv[0]))[2] = argv[7],
-                            (reinterpret_cast<char**>(argv[0]))[3] = reinterpret_cast<char*>(new double(0)),
-                            (reinterpret_cast<char**>(argv[0]))[4] = reinterpret_cast<char*>(new double(0)),
-                            (reinterpret_cast<char**>(argv[0]))[5] = reinterpret_cast<char*>(new double(0)),
-                            (reinterpret_cast<char**>(argv[0]))[6] = reinterpret_cast<char*>(new double(0)),
+                            (reinterpret_cast<char**>(argv[0]))[3] = reinterpret_cast<char*>(new double(
+                                ((*reinterpret_cast<double*>(argv[3]) + *reinterpret_cast<double*>(argv[4])) / 2))),
+                            (reinterpret_cast<char**>(argv[0]))[4] = reinterpret_cast<char*>(new double(
+                                (*reinterpret_cast<double*>(argv[4])))),
+                            (reinterpret_cast<char**>(argv[0]))[5] = reinterpret_cast<char*>(new double(
+                                (*reinterpret_cast<double*>(argv[5])))),
+                            (reinterpret_cast<char**>(argv[0]))[6] = reinterpret_cast<char*>(new double(
+                                ((*reinterpret_cast<double*>(argv[5]) + *reinterpret_cast<double*>(argv[6])) / 2))),
                             (reinterpret_cast<char**>(argv[0]))[7] = NULL,
                             (reinterpret_cast<char**>(argv[0]))[8] = NULL,
                             (reinterpret_cast<char**>(argv[0]))[9] = NULL,
@@ -164,7 +168,24 @@ int main(int argc, char** argv) {
                                 delete argv[8],
                                 0))
                             ):(
-                            0)),
+                            // > 1 number, must divide further
+                            argv[0] = reinterpret_cast<char*>(new char*[11]),
+                            (reinterpret_cast<char**>(argv[0]))[0] = NULL,
+                            (reinterpret_cast<char**>(argv[0]))[1] = NULL,
+                            (reinterpret_cast<char**>(argv[0]))[2] = argv[8],
+                            (reinterpret_cast<char**>(argv[0]))[3] = reinterpret_cast<char*>(new double(
+                                ((*reinterpret_cast<double*>(argv[3]) + *reinterpret_cast<double*>(argv[4])) / 2))),
+                            (reinterpret_cast<char**>(argv[0]))[4] = reinterpret_cast<char*>(new double(
+                                (*reinterpret_cast<double*>(argv[4])))),
+                            (reinterpret_cast<char**>(argv[0]))[5] = reinterpret_cast<char*>(new double(
+                                ((*reinterpret_cast<double*>(argv[5]) + *reinterpret_cast<double*>(argv[6])) / 2))),
+                            (reinterpret_cast<char**>(argv[0]))[6] = reinterpret_cast<char*>(new double(
+                                (*reinterpret_cast<double*>(argv[6])))),
+                            (reinterpret_cast<char**>(argv[0]))[7] = NULL,
+                            (reinterpret_cast<char**>(argv[0]))[8] = NULL,
+                            (reinterpret_cast<char**>(argv[0]))[9] = NULL,
+                            (reinterpret_cast<char**>(argv[0]))[10] = NULL,
+                            main(2, reinterpret_cast<char**>(argv[0])))),
                         // se
                         (reinterpret_cast<vector<pair<double,double>>*>(argv[9])->size() < 2 ?(
                             (reinterpret_cast<vector<pair<double,double>>*>(argv[9])->size() == 0 ?(
@@ -178,7 +199,24 @@ int main(int argc, char** argv) {
                                 delete argv[9],
                                 0))
                             ):(
-                            0)),
+                            // > 1 number, must divide further
+                            argv[0] = reinterpret_cast<char*>(new char*[11]),
+                            (reinterpret_cast<char**>(argv[0]))[0] = NULL,
+                            (reinterpret_cast<char**>(argv[0]))[1] = NULL,
+                            (reinterpret_cast<char**>(argv[0]))[2] = argv[9],
+                            (reinterpret_cast<char**>(argv[0]))[3] = reinterpret_cast<char*>(new double(
+                                (*reinterpret_cast<double*>(argv[3])))),
+                            (reinterpret_cast<char**>(argv[0]))[4] = reinterpret_cast<char*>(new double(
+                                ((*reinterpret_cast<double*>(argv[3]) + *reinterpret_cast<double*>(argv[4])) / 2))),
+                            (reinterpret_cast<char**>(argv[0]))[5] = reinterpret_cast<char*>(new double(
+                                ((*reinterpret_cast<double*>(argv[5]) + *reinterpret_cast<double*>(argv[6])) / 2))),
+                            (reinterpret_cast<char**>(argv[0]))[6] = reinterpret_cast<char*>(new double(
+                                (*reinterpret_cast<double*>(argv[6])))),
+                            (reinterpret_cast<char**>(argv[0]))[7] = NULL,
+                            (reinterpret_cast<char**>(argv[0]))[8] = NULL,
+                            (reinterpret_cast<char**>(argv[0]))[9] = NULL,
+                            (reinterpret_cast<char**>(argv[0]))[10] = NULL,
+                            main(2, reinterpret_cast<char**>(argv[0])))),
                         // sw last
                         (reinterpret_cast<vector<pair<double,double>>*>(argv[10])->size() < 2 ?(
                             (reinterpret_cast<vector<pair<double,double>>*>(argv[10])->size() == 0 ?(
@@ -192,7 +230,24 @@ int main(int argc, char** argv) {
                                 delete argv[10],
                                 0))
                             ):(
-                            0)),
+                            // > 1 number, must divide further
+                            argv[0] = reinterpret_cast<char*>(new char*[11]),
+                            (reinterpret_cast<char**>(argv[0]))[0] = NULL,
+                            (reinterpret_cast<char**>(argv[0]))[1] = NULL,
+                            (reinterpret_cast<char**>(argv[0]))[2] = argv[9],
+                            (reinterpret_cast<char**>(argv[0]))[3] = reinterpret_cast<char*>(new double(
+                                (*reinterpret_cast<double*>(argv[3])))),
+                            (reinterpret_cast<char**>(argv[0]))[4] = reinterpret_cast<char*>(new double(
+                                ((*reinterpret_cast<double*>(argv[3]) + *reinterpret_cast<double*>(argv[4])) / 2))),
+                            (reinterpret_cast<char**>(argv[0]))[5] = reinterpret_cast<char*>(new double(
+                                (*reinterpret_cast<double*>(argv[5])))),
+                            (reinterpret_cast<char**>(argv[0]))[6] = reinterpret_cast<char*>(new double(
+                                ((*reinterpret_cast<double*>(argv[5]) + *reinterpret_cast<double*>(argv[6])) / 2))),
+                            (reinterpret_cast<char**>(argv[0]))[7] = NULL,
+                            (reinterpret_cast<char**>(argv[0]))[8] = NULL,
+                            (reinterpret_cast<char**>(argv[0]))[9] = NULL,
+                            (reinterpret_cast<char**>(argv[0]))[10] = NULL,
+                            main(2, reinterpret_cast<char**>(argv[0])))),
                         // we know we are done with argv[1-6]
                         delete argv[1],
                         delete argv[2],
