@@ -1,3 +1,9 @@
+#ifndef DEBUG
+#define log(...) 0
+#else
+#include "debugging.h"
+#endif
+
 #include <iostream>
 #include <vector>
 

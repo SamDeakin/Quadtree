@@ -1,7 +1,7 @@
 CXX = clang++
-CXXFLAGS = -std=gnu++11 -stdlib=libc++ -Weverything
+CXXFLAGS = -std=gnu++11 -stdlib=libc++ -Weverything -D DEBUG
 EXEC = report
-OBJECTS = report.o
+OBJECTS = report.o debugging.o
 DEPENDS = ${OBJECTS:.o=.d}
 
 ${EXEC}: ${OBJECTS}
