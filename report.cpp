@@ -134,10 +134,12 @@ int main(int argc, char** argv) {
                             // size 1 or 0, don't recurse
                             (reinterpret_cast<vector<pair<double,double>>*>(argv[7])->size() == 0 ?(
                                 // 0, just delete the vector
+                                log("nw none"),
                                 delete argv[7],
                                 0
                                 ):(
                                 // 1, print then delete
+                                log("nw one"),
                                 cout << (*reinterpret_cast<vector<pair<double,double>>*>(argv[7]))[0].first << endl,
                                 cout << (*reinterpret_cast<vector<pair<double,double>>*>(argv[7]))[0].second << endl,
                                 delete argv[7],
@@ -160,7 +162,7 @@ int main(int argc, char** argv) {
                             (reinterpret_cast<char**>(argv[0]))[8] = NULL,
                             (reinterpret_cast<char**>(argv[0]))[9] = NULL,
                             (reinterpret_cast<char**>(argv[0]))[10] = NULL,
-                            log("nw"),
+                            log("nw recursion"),
                             log(reinterpret_cast<vector<pair<double,double>>*>((reinterpret_cast<char**>(argv[0]))[3])),
                             log(*reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[4]), 
                                 *reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[5]),
@@ -171,10 +173,12 @@ int main(int argc, char** argv) {
                         (reinterpret_cast<vector<pair<double,double>>*>(argv[8])->size() < 2 ?(
                             (reinterpret_cast<vector<pair<double,double>>*>(argv[8])->size() == 0 ?(
                                 // 0, just delete the vector
+                                log("ne none"),
                                 delete argv[8],
                                 0
                                 ):(
                                 // 1, print then delete
+                                log("ne one"),
                                 cout << (*reinterpret_cast<vector<pair<double,double>>*>(argv[8]))[0].first << endl,
                                 cout << (*reinterpret_cast<vector<pair<double,double>>*>(argv[8]))[0].second << endl,
                                 delete argv[8],
@@ -197,7 +201,7 @@ int main(int argc, char** argv) {
                             (reinterpret_cast<char**>(argv[0]))[8] = NULL,
                             (reinterpret_cast<char**>(argv[0]))[9] = NULL,
                             (reinterpret_cast<char**>(argv[0]))[10] = NULL,
-                            log("ne"),
+                            log("ne recursion"),
                             log(reinterpret_cast<vector<pair<double,double>>*>((reinterpret_cast<char**>(argv[0]))[3])),
                             log(*reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[4]), 
                                 *reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[5]),
@@ -208,10 +212,12 @@ int main(int argc, char** argv) {
                         (reinterpret_cast<vector<pair<double,double>>*>(argv[9])->size() < 2 ?(
                             (reinterpret_cast<vector<pair<double,double>>*>(argv[9])->size() == 0 ?(
                                 // 0, just delete the vector
+                                log("se none"),
                                 delete argv[9],
                                 0
                                 ):(
                                 // 1, print then delete
+                                log("se one"),
                                 cout << (*reinterpret_cast<vector<pair<double,double>>*>(argv[9]))[0].first << endl,
                                 cout << (*reinterpret_cast<vector<pair<double,double>>*>(argv[9]))[0].second << endl,
                                 delete argv[9],
@@ -234,7 +240,7 @@ int main(int argc, char** argv) {
                             (reinterpret_cast<char**>(argv[0]))[8] = NULL,
                             (reinterpret_cast<char**>(argv[0]))[9] = NULL,
                             (reinterpret_cast<char**>(argv[0]))[10] = NULL,
-                            log("se"),
+                            log("se recursion"),
                             log(reinterpret_cast<vector<pair<double,double>>*>((reinterpret_cast<char**>(argv[0]))[3])),
                             log(*reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[4]), 
                                 *reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[5]),
@@ -245,10 +251,12 @@ int main(int argc, char** argv) {
                         (reinterpret_cast<vector<pair<double,double>>*>(argv[10])->size() < 2 ?(
                             (reinterpret_cast<vector<pair<double,double>>*>(argv[10])->size() == 0 ?(
                                 // 0, just delete the vector
+                                log("sw none"),
                                 delete argv[10],
                                 0
                                 ):(
                                 // 1, print then delete
+                                log("sw one"),
                                 cout << (*reinterpret_cast<vector<pair<double,double>>*>(argv[10]))[0].first << endl,
                                 cout << (*reinterpret_cast<vector<pair<double,double>>*>(argv[10]))[0].second << endl,
                                 delete argv[10],
@@ -271,7 +279,7 @@ int main(int argc, char** argv) {
                             (reinterpret_cast<char**>(argv[0]))[8] = NULL,
                             (reinterpret_cast<char**>(argv[0]))[9] = NULL,
                             (reinterpret_cast<char**>(argv[0]))[10] = NULL,
-                            log("sw"),
+                            log("sw recursion"),
                             log(reinterpret_cast<vector<pair<double,double>>*>((reinterpret_cast<char**>(argv[0]))[3])),
                             log(*reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[4]), 
                                 *reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[5]),
