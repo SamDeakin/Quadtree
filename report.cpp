@@ -96,8 +96,8 @@ int main(int argc, char** argv) {
                     ):(
                     
                     // state 3, print for now then recurse
-                    cout << (*reinterpret_cast<vector<pair<double,double>>*>(argv[2]))[*reinterpret_cast<int*>(argv[1])].first << endl,
-                    cout << (*reinterpret_cast<vector<pair<double,double>>*>(argv[2]))[*reinterpret_cast<int*>(argv[1])].second << endl,
+                    cout << "R" << (*reinterpret_cast<vector<pair<double,double>>*>(argv[2]))[*reinterpret_cast<int*>(argv[1])].first << endl,
+                    cout << "R" << (*reinterpret_cast<vector<pair<double,double>>*>(argv[2]))[*reinterpret_cast<int*>(argv[1])].second << endl,
                     
                     // this puts the current number into the correct quadrant
                     ((*reinterpret_cast<vector<pair<double,double>>*>(argv[2]))[*reinterpret_cast<int*>(argv[1])].first <= 
@@ -163,11 +163,11 @@ int main(int argc, char** argv) {
                             (reinterpret_cast<char**>(argv[0]))[9] = NULL,
                             (reinterpret_cast<char**>(argv[0]))[10] = NULL,
                             log("nw recursion"),
-                            log(reinterpret_cast<vector<pair<double,double>>*>((reinterpret_cast<char**>(argv[0]))[3])),
-                            log(*reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[4]), 
+                            log(reinterpret_cast<vector<pair<double,double>>*>((reinterpret_cast<char**>(argv[0]))[2])),
+                            log(*reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[3]), 
+                                *reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[4]),
                                 *reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[5]),
-                                *reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[6]),
-                                *reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[7])),
+                                *reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[6])),
                             main(2, reinterpret_cast<char**>(argv[0])))),
                         // ne
                         (reinterpret_cast<vector<pair<double,double>>*>(argv[8])->size() < 2 ?(
@@ -202,11 +202,11 @@ int main(int argc, char** argv) {
                             (reinterpret_cast<char**>(argv[0]))[9] = NULL,
                             (reinterpret_cast<char**>(argv[0]))[10] = NULL,
                             log("ne recursion"),
-                            log(reinterpret_cast<vector<pair<double,double>>*>((reinterpret_cast<char**>(argv[0]))[3])),
-                            log(*reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[4]), 
+                            log(reinterpret_cast<vector<pair<double,double>>*>((reinterpret_cast<char**>(argv[0]))[2])),
+                            log(*reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[3]), 
+                                *reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[4]),
                                 *reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[5]),
-                                *reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[6]),
-                                *reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[7])),
+                                *reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[6])),
                             main(2, reinterpret_cast<char**>(argv[0])))),
                         // se
                         (reinterpret_cast<vector<pair<double,double>>*>(argv[9])->size() < 2 ?(
@@ -241,11 +241,11 @@ int main(int argc, char** argv) {
                             (reinterpret_cast<char**>(argv[0]))[9] = NULL,
                             (reinterpret_cast<char**>(argv[0]))[10] = NULL,
                             log("se recursion"),
-                            log(reinterpret_cast<vector<pair<double,double>>*>((reinterpret_cast<char**>(argv[0]))[3])),
-                            log(*reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[4]), 
+                            log(reinterpret_cast<vector<pair<double,double>>*>((reinterpret_cast<char**>(argv[0]))[2])),
+                            log(*reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[3]), 
+                                *reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[4]),
                                 *reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[5]),
-                                *reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[6]),
-                                *reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[7])),
+                                *reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[6])),
                             main(2, reinterpret_cast<char**>(argv[0])))),
                         // sw last
                         (reinterpret_cast<vector<pair<double,double>>*>(argv[10])->size() < 2 ?(
@@ -280,11 +280,11 @@ int main(int argc, char** argv) {
                             (reinterpret_cast<char**>(argv[0]))[9] = NULL,
                             (reinterpret_cast<char**>(argv[0]))[10] = NULL,
                             log("sw recursion"),
-                            log(reinterpret_cast<vector<pair<double,double>>*>((reinterpret_cast<char**>(argv[0]))[3])),
-                            log(*reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[4]), 
+                            log(reinterpret_cast<vector<pair<double,double>>*>((reinterpret_cast<char**>(argv[0]))[2])),
+                            log(*reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[3]), 
+                                *reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[4]),
                                 *reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[5]),
-                                *reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[6]),
-                                *reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[7])),
+                                *reinterpret_cast<double*>((reinterpret_cast<char**>(argv[0]))[6])),
                             main(2, reinterpret_cast<char**>(argv[0])))),
                         // we know we are done with argv[1-6]
                         delete argv[1],
