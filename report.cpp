@@ -123,9 +123,9 @@ int main(int argc, char** argv) {
                     (*reinterpret_cast<int*>(argv[1]))++,
 
                     // this is the loop recursion statement
-                    (*reinterpret_cast<int*>(argv[1]) < reinterpret_cast<vector<pair<double,double>>*>(argv[2])->size()) ?
+                    (*reinterpret_cast<int*>(argv[1]) < reinterpret_cast<vector<pair<double,double>>*>(argv[2])->size()) ?(
                         main(3, argv)
-                         :
+                        ):(
 
                         // done putting values in their correct quadrant
                         // here we determine recursion
@@ -293,5 +293,5 @@ int main(int argc, char** argv) {
                         delete argv[4],
                         delete argv[5],
                         delete argv[6],
-                        0);
+                        0));
 }
